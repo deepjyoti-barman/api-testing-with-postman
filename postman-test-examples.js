@@ -625,11 +625,65 @@ NOTES:
         pm.variables.replaceIn('{{$randomFirstName}}');
 
 
+- To get globally accessible collection URL:
+    -> Collection Name -> ... -> Share Collection -> Get Link -> Get Link / Update Link
+
+
+- Request chaining / property transfer: Write a script to extract a JSON data from the response of an API then, then use it as an input / refer it in another API request (Directly or by setting the JSON data as Collection / Environment / Global variable)
+
+
 - Newman: Tool to run tests from command line
     Syntax:
         newman run <collection_file_path> -n <no_of_iterations> -e <environment_variables_file_path> -g <global_variables_file_path> -d <test_data> -reporter <reporter_name> --delay-request <delay_between_requests_in_ms> --verbose
     Example:
-        newman run MyCollection.postman_collection.json -n 5 -e MyEnvironment.postman_environment.json -g MyGlobals.postman_globals.json -d testData.csv -reporter cli.html --delay-request 1000 --verbose
+        -> newman run MyCollection.postman_collection.json -n 5 -e MyEnvironment.postman_environment.json -g MyGlobals.postman_globals.json -d testData.csv -reporter cli.html --delay-request 1000 --verbose
+
+        -> newman run -h (To display all the 'run' options and their respective actions in newman)
+
+        -> newman run "global_url" (We can also run a collection in newman using globally accessible collection URL)
+
+
+- 'Pre-request Scripts' section executes before sending the request, whereas 'Tests' section executes after receiving the response.
+
+
+- Postman Console is generally used for Debugging purposes. Different statements that can be used to log on the Postman Console are:
+    -> console.log()
+    -> console.info()
+    -> console.warn()
+    -> console.error()
+
+
+- App Debug Logs (View -> Developer -> Show DevTools (Current View)) is used for deep level of debugging purposes.
+
+
+- USEFUL TOOLS AND SITES TO VIEW, PARSE, BEAUTIFY, EXTRACT OR EVEN ESCAPE JSON DATA:
+    -> If you want to parse large JSON responses its better to take the help of JSON Viewer available at: http://jsonviewer.stack.hu/. If square brackets [] are found while viewing JSON response in JSON Viewer you need to parse the response via indexes.
+
+    -> To find the path of a JSON variable in response you may use: http://jsonpathfinder.com/ (also available in Google Chrome plugin store as  JSON Path Finder)
+
+    -> To format JSON data in text / tree / code and many other format + parse JSON data you may use: https://jsonformatter.org/json-parser
+
+    -> To escape ', "", \ present in a JSON string you may use: https://www.freeformatter.com/json-escape.html
+
+    -> To extract a bunch of JSON data from the response (having same key) in an array you may use, 
+        - Jayway JSONPath Evaluator  :  https://jsonpath.herokuapp.com/
+        - JSONPath Expression Tester :  https://jsonpath.curiousconcept.com/
+        - JSONPath Online Evaluator  :  https://jsonpath.com/
+        - For tutorials visit on JSONPath: [https://www.npmjs.com/package/jsonpath], [https://devqa.io/perf/parse-json-response-using-jmeters-json-extractor/], [https://goessner.net/articles/JsonPath/]
+
+
+- When to use pm.response.json():
+    - When you want to traverse the API response and perform key value pair check/validation
+    - You want to access the value of a particular key present in the response
+
+    (Disadvantage)
+    It is not a good idea to use this method 
+    - When the response is too big.
+    - If the response is having arrays and the position of objects present in the array is dynamic.
+
+
+- When to use pm.response.text():
+    - When you want to check if a particular string is present in the response body or not / it is a part of the response body or not.
 
 
 - URL on extra learning materials on Postman:
