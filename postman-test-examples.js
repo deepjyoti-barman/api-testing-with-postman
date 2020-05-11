@@ -673,17 +673,39 @@ NOTES:
 
 
 - When to use pm.response.json():
-    - When you want to traverse the API response and perform key value pair check/validation
-    - You want to access the value of a particular key present in the response
+    -> When you want to traverse the API response and perform key value pair check/validation
+    -> You want to access the value of a particular key present in the response
 
     (Disadvantage)
     It is not a good idea to use this method 
-    - When the response is too big.
-    - If the response is having arrays and the position of objects present in the array is dynamic.
+    -> When the response is too big.
+    -> If the response is having arrays and the position of objects present in the array is dynamic.
 
 
 - When to use pm.response.text():
-    - When you want to check if a particular string is present in the response body or not / it is a part of the response body or not.
+    -> When you want to check if a particular string is present in the response body or not / it is a part of the response body or not.
+
+
+- JSON.parse(): 
+    -> Used to convert a string or text into a JavaScript object
+    -> Syntax: JSON.parse(string, reviver_function)
+        -> string              Required. A string written in JSON format
+        -> reviver_function    Optional. A function used to transform the result. The function is called for each item. Any nested objects are transformed before the parent.
+                                If the function returns a valid value, the item value is replaced with the transformed value.
+                                If the function returns undefined, the item is deleted.
+    -> For more details visit the site:  https://www.w3schools.com/jsref/jsref_parse_json.asp
+
+
+- JSON.stringify(): 
+    -> Used to convert a JavaScript object to string or text.
+    -> It can also be used to convert JavaScript arrays into string or text.
+    -> Syntax: JSON.stringify(obj, replacer, space)
+        -> obj                 Required. The value to convert to a string
+        -> replacer            Optional. Either a function or an array used to transform the result. The replacer is called for each item. 
+        -> space	           Optional. Either a String or a Number.
+                               A string to be used as white space (max 10 characters),
+                               or a Number, from 0 to 10, to indicate how many space characters to use as white space.
+    -> For more details visit the site:  https://www.w3schools.com/jsref/jsref_stringify.asp, https://alligator.io/js/json-parse-stringify/
 
 
 - URL on extra learning materials on Postman:
