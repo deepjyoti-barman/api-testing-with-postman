@@ -3,7 +3,8 @@
 // Company              : Go Digit General Insurance Limited
 // Author               : Deepjyoti Barman
 // Designation          : QA Analyst
-// Date                 : April 19 (Sunday), 2020
+// Created              : April 19 (Sunday), 2020
+// Last Updated         : May 14 (Thursday), 2020
 
 
 
@@ -111,7 +112,6 @@ pm.test("Validate if Content-Type in the response header has value 'application/
     pm.expect(pm.response.headers.get("content-type")).to.include("application/json");
 });
 
-
 // Type - 2
 pm.test("Validate if the response has 'Content-Type' in the header and the value for Content-Type is 'application/json; charset=utf-8", function () {
     // Initially checks if the response has 'Content-Type' in the header
@@ -180,16 +180,26 @@ pm.test("Validate if the response body is correct by matching it with an exact s
 // ------------------------------------------------------------------------------------------------------
 
 
-// Response body containing a string anywhere in the body assertion
+// Response containing a string anywhere in the body assertion
 // Snippet - Response body: Contains string
 // Type - 1
 pm.test("Validate if response has 'Howell' anywhere in the body", function () {
     pm.expect(pm.response.text()).to.include("Howell");
 });
 
-
 // Type - 2
 tests["Validate if response has 'Howell' anywhere in the body"] = responseBody.has("Howell");
+
+
+// ------------------------------------------------------------------------------------------------------
+
+
+// Response body containing a specific key or property assertion
+let jsonData = pm.response.json();
+
+pm.test("Validate if the key 'listStandardResponse' is present in the response", function() {
+    pm.expect(jsonData.data).to.have.property("listStandardResponse");
+});
 
 
 // ------------------------------------------------------------------------------------------------------
@@ -698,7 +708,14 @@ NOTES:
 
 - JSON.stringify(): 
     -> Used to convert a JavaScript object to string or text.
+    -> It can be used to convert a nested JavaScript object to a string or text.
+        e.g. 
+            var obj = { a: [1, 2, 3, 4], b: { c: 'val' } };
+            pm.environment.set("obj", JSON.stringify(obj));
     -> It can also be used to convert JavaScript arrays into string or text.
+        e.g.
+            var array = [1, 2, 3, 4];
+            pm.environment.set("array", JSON.stringify(array, null, 2));
     -> Syntax: JSON.stringify(obj, replacer, space)
         -> obj                 Required. The value to convert to a string
         -> replacer            Optional. Either a function or an array used to transform the result. The replacer is called for each item. 
