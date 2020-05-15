@@ -696,25 +696,15 @@ NOTES:
     -> When you want to check if a particular string is present in the response body or not / it is a part of the response body or not.
 
 
-- JSON.parse(): 
-    -> Used to convert a string or text into a JavaScript object
-    -> Syntax: JSON.parse(string, reviver_function)
-        -> string              Required. A string written in JSON format
-        -> reviver_function    Optional. A function used to transform the result. The function is called for each item. Any nested objects are transformed before the parent.
-                                If the function returns a valid value, the item value is replaced with the transformed value.
-                                If the function returns undefined, the item is deleted.
-    -> For more details visit the site:  https://www.w3schools.com/jsref/jsref_parse_json.asp
-
-
 - JSON.stringify(): 
-    -> Used to convert a JavaScript object to string or text.
+    -> Primarily used to convert a JavaScript object to string or text.
     -> It can be used to convert a nested JavaScript object to a string or text.
         e.g. 
-            var obj = { a: [1, 2, 3, 4], b: { c: 'val' } };
+            let obj = { a: [1, 2, 3, 4], b: { c: 'val' } };
             pm.environment.set("obj", JSON.stringify(obj));
     -> It can also be used to convert JavaScript arrays into string or text.
         e.g.
-            var array = [1, 2, 3, 4];
+            let array = [1, 2, 3, 4];
             pm.environment.set("array", JSON.stringify(array, null, 2));
     -> Syntax: JSON.stringify(obj, replacer, space)
         -> obj                 Required. The value to convert to a string
@@ -723,6 +713,22 @@ NOTES:
                                A string to be used as white space (max 10 characters),
                                or a Number, from 0 to 10, to indicate how many space characters to use as white space.
     -> For more details visit the site:  https://www.w3schools.com/jsref/jsref_stringify.asp, https://alligator.io/js/json-parse-stringify/
+
+
+- JSON.parse(): 
+    -> Primarily used to convert a string or text into a JavaScript object
+    -> It can be used to convert a string or text back to a nested JavaScript object.
+        e.g.
+            let obj = JSON.parse(pm.environment.get("obj"));
+    -> It can also be usd to convert a string or text back to an array.
+        e.g.
+            let array = JSON.parse(pm.environment.get("array"));
+    -> Syntax: JSON.parse(string, reviver_function)
+        -> string              Required. A string written in JSON format
+        -> reviver_function    Optional. A function used to transform the result. The function is called for each item. Any nested objects are transformed before the parent.
+                                If the function returns a valid value, the item value is replaced with the transformed value.
+                                If the function returns undefined, the item is deleted.
+    -> For more details visit the site:  https://www.w3schools.com/jsref/jsref_parse_json.asp
 
 
 - URL on extra learning materials on Postman:
