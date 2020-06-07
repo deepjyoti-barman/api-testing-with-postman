@@ -644,13 +644,22 @@ NOTES:
 
 - Newman: Tool to run tests from command line
     Syntax:
-        newman run <collection_file_path> -n <no_of_iterations> -e <environment_variables_file_path> -g <global_variables_file_path> -d <test_data> -reporter <reporter_name> --delay-request <delay_between_requests_in_ms> --verbose
+        newman run <collection_file_path> -n <no_of_iterations> -e <environment_variables_file_path> -g <global_variables_file_path> -d <test_data> -r <reporter_name> --delay-request <delay_between_requests_in_ms> --verbose
     Example:
-        -> newman run MyCollection.postman_collection.json -n 5 -e MyEnvironment.postman_environment.json -g MyGlobals.postman_globals.json -d testData.csv -reporter cli.html --delay-request 1000 --verbose
+        -> newman run MyCollection.postman_collection.json -n 5 -e MyEnvironment.postman_environment.json -g MyGlobals.postman_globals.json -d testData.csv --reporters cli,html --delay-request 1000 --verbose
 
         -> newman run -h (To display all the 'run' options and their respective actions in newman)
 
         -> newman run "global_url" (We can also run a collection in newman using globally accessible collection URL)
+
+
+- Advanced HTML Reporting with 'newman-reporter-htmlextra':
+    -> Official site:
+        https://www.npmjs.com/package/newman-reporter-htmlextra
+    -> Installation command:
+        npm install --global newman-reporter-htmlextra
+    -> Command to generate report:
+        newman run collection.json -e environment.json -global.json -d testdata.json -r cli,htmlextra --reporter-htmlextra-darkTheme --reporter-htmlextra-showEnvironmentData
 
 
 - 'Pre-request Scripts' section executes before sending the request, whereas 'Tests' section executes after receiving the response.
