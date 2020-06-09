@@ -659,7 +659,7 @@ NOTES:
     -> Installation command:
         npm install --global newman-reporter-htmlextra
     -> Command to generate report:
-        newman run collection.json -e environment.json -global.json -d testdata.json -r cli,htmlextra --reporter-htmlextra-darkTheme --reporter-htmlextra-showEnvironmentData
+        newman run collection.json -e environment.json -global.json -d testdata.json -r cli,htmlextra --reporter-htmlextra-darkTheme --reporter-htmlextra-showEnvironmentData --reporter-htmlextra-logs
 
 
 - 'Pre-request Scripts' section executes before sending the request, whereas 'Tests' section executes after receiving the response.
